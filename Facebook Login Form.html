@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login with Facebook</h2>
+        <button id="fb-login-btn" onclick="facebookLogin()">Login with Facebook</button>
+        <div id="user-info" style="display: none;">
+            <img id="user-pic" src="" alt="Profile Picture">
+            <h3 id="user-name"></h3>
+            <p id="user-email"></p>
+        </div>
+    </div>
+
+    <script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId: 'YOUR_APP_ID', // Replace with your Facebook App ID
+                cookie: true,
+                xfbml: true,
+                version: 'v17.0'
+            });
+        };
+
+        function facebookLogin() {
+            FB.login(function(response) {
+                if (response.status === 'connected') {
+                    getUserInfo();
+                } else {
+                    alert('Facebook login failed!');
+                }
+            }, {scope: 'public_profile,email'});
+        }
+
+        function getUserInfo() {
+            FB.api('/me', {fields: 'id,name,email,picture'}, function(response) {
+                document.getElementById("fb-login-btn").style.display = "none";
+                document.getElementById("user-info").style.display = "block";
+                document.getElementById("user-name").innerText = response.name;
+                document.getElementById("user-email").innerText = response.email;
+                document.getElementById("user-pic").src = response.picture.data.url;
+            });
+        }
+    </script>
+</body>
+</html>

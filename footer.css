@@ -1,0 +1,47 @@
+h3{
+    color: blue;
+    text-decoration: underline;
+
+}
+p{
+    color: lawngreen;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+.flex_footer{
+    display: flex;
+    justify-content: space-around;
+    background: #333;
+    color: white;
+    padding: 10px;
+}
+.flex_footer div{
+    flex: 1;
+    padding: 10px;
+
+}
+.flex_footer a{
+    display: block;  
+    color: white;
+    text-decoration: none;
+}
+.flex_footer a:hover{
+   /* background-color: black;  */
+    border-radius: 15px;
+    text-decoration: underline;
+}
+.af{
+    color: aqua;
+    font-size: 20px;
+}
+.af a:hover{
+    color: blueviolet;
+}
+.facebook a:hover{
+    color: blue;
+}
+.youtube a:hover{
+    color: red;
+}
